@@ -1,60 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-
+import { View } from '../../components/View';
 import { Stage } from './Stage';
-import {
-  View,
-  Button,
-  Icon,
-  Text,
-} from '../../index';
 
-import PopupDialog from 'react-native-popup-dialog';
 import { Image } from '../../components/Image';
 
-export function Buttons() {
+import { Text,TouchableOpacity} from "react-native";
+import Modal from "react-native-modal";
+
+import {
+  Caption,
+  FormGroup,Button,Icon,
+} from '../../index';
 
 
+export class Buttons extends Component {
+  state = {
+      isModalVisible: false
+    };
+
+    _toggleModal = () =>
+      this.setState({ isModalVisible: !this.state.isModalVisible });
+render(){
   return (
 
     <View styleName="vertical collapsed">
-      <Stage title="Button / Text only / Light">
-        <Button>
-          <Text>CHECK IN HERE</Text>
-        </Button>
-      </Stage>
 
-      <Stage title="Button / Text only / Dark">
-        <Button  styleName="secondary">
-          <Text>CHECK IN HERE</Text>
-        </Button>
-      </Stage>
 
-      <Stage title="Button / Icon + Text / Light">
-        <Button>
-          <Icon name="add-event" />
-          <Text>ADD TO CALENDAR</Text>
-        </Button>
-      </Stage>
 
-      <Stage title="Button / Icon + Text / Dark">
-        <Button styleName="secondary">
-          <Icon name="add-event" />
-          <Text>ADD TO CALENDAR</Text>
-        </Button>
-      </Stage>
 
-      <Stage title="Button / Fixed size">
-        <View styleName="horizontal flexible">
-          <Button styleName="confirmation">
-            <Text>REMOVE</Text>
-          </Button>
-
-          <Button styleName="confirmation secondary">
-            <Text>UPDATE</Text>
-          </Button>
-        </View>
-      </Stage>
 
       <Stage title="Button / Full width">
         <Button styleName="full-width">
@@ -101,17 +75,24 @@ export function Buttons() {
         </View>
       </Stage>
 
-    <Stage title="Learn Much More">
-        <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-          <Text>*****CODE VİEW ABOUT BUTTONS******</Text>
-        </Button>
-      </Stage>
-    <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-     <View>
-       <Image source={require('./Buttons.jpg')} />
-      </View>
-     </PopupDialog>
-   </View>
+   <Stage>
+      <Button onPress={this._toggleModal} styleName="full-width">
+        <Text>CODE VİEW ABOUT BUTTONS</Text>
+      </Button>
+   </Stage>
 
-  );
+  <Modal isVisible={this.state.isModalVisible}>
+  <View style={{ flex: 1 }}>
+
+    <TouchableOpacity onPress={this._toggleModal}>
+    <Image
+          styleName="large-wide"
+     source={require('./Buttons1.jpg')} />
+    </TouchableOpacity>
+  </View>
+</Modal>
+
+   </View>
+   );
+ }
 }

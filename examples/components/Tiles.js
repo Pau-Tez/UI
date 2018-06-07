@@ -5,7 +5,6 @@ import {
   Heading,
   View,
   Tile,
-  Image,
   ImageBackground,
   Text,
   Title,
@@ -15,7 +14,8 @@ import {
   Overlay,
   Button,
 } from '../../index';
-
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 export function Tiles() {
   return (
     <View styleName="vertical collapsed">
@@ -31,13 +31,11 @@ export function Tiles() {
           </View>
         </Tile>
       </Stage>
-
       <Stage title="Tile + Icon">
         <Tile styleName="small clear">
           <ImageBackground
             styleName="medium-square"
-            source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-2.png' }}
-          >
+            source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-2.png' }}  >
             <Overlay styleName="rounded-small">
               <Icon name="play" />
             </Overlay>
@@ -240,6 +238,18 @@ export function Tiles() {
           </Tile>
         </ImageBackground>
       </Stage>
+
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT TILES******</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./Tiles.jpg')} />
+        </View>
+       </PopupDialog>
+
     </View>
   );
 }

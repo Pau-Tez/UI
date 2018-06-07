@@ -10,38 +10,46 @@ import {
   Description,
   Caption,
 } from '../../components/Text';
-import {
-   Button
-} from '../../index';
+import {  Button  } from '../../index';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 
 export function Typography() {
-  return (
-    <View styleName="vertical collapsed">
-      <Stage title="Heading">
-        <Heading>Mobile App Creator</Heading>
-      </Stage>
+       return (
+            <View styleName="vertical collapsed">
+                <Stage title="Heading">
+                  <Heading>Mobile App Creator</Heading>
+                </Stage>
 
-      <Stage title="Title">
-        <Title>MOBILE APP CREATOR</Title>
-      </Stage>
+               <Stage title="Title">
+                <Title>MOBILE APP CREATOR</Title>
+               </Stage>
 
-      <Stage title="Subtitle">
-        <Subtitle>Mobile App Creator</Subtitle>
-      </Stage>
+              <Stage title="Subtitle">
+                <Subtitle>Mobile App Creator</Subtitle>
+              </Stage>
 
-      <Stage title="Text">
-        <Text>Mobile App Creator</Text>
-      </Stage>
+              <Stage title="Text">
+                <Text>Mobile App Creator</Text>
+              </Stage>
 
-      <Stage title="Caption">
-        <Caption>Mobile App Creator</Caption>
-      </Stage>
-      <Button styleName="secondary">
-        <Text>CLICK TO CODE VİEW ABOUT TYPOGRAPHY</Text>
-      </Button>
+              <Stage title="Caption">
+                <Caption>Mobile App Creator</Caption>
+              </Stage>
 
-
-    </View>
+              <Stage title="Learn Much More">
+                  <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+                    <Text>*****CODE VİEW ABOUT TYPOGRAPHY******</Text>
+                  </Button>
+              </Stage>
+                  <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+                   <View>
+                       <Image
+                      styleName="featured"
+                       source={require('./Typography1.jpg')} />
+                  </View>
+                </PopupDialog>
+            </View>
 
   );
 }

@@ -10,18 +10,17 @@ import {
   View,
   TextInput,Button
 } from '../../index';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 
 export class FormComponents extends Component {
   constructor() {
-    super();
-    this.state = {
+    super();  this.state = {
       switchOn: false,
     };
-  }
-
+    }
   render() {
     const { switchOn } = this.state;
-
     return (
       <View styleName="vertical collapsed">
         <Stage title="TextInput / Full width">
@@ -54,12 +53,12 @@ export class FormComponents extends Component {
 
         <Stage title="Learn Much More">
             <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-              <Text>*****CODE VİEW ABOUT BUTTONS******</Text>
+              <Text>*****CODE VİEW ABOUT DROPDOWNMENU******</Text>
             </Button>
           </Stage>
         <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
          <View>
-           <Image source={require('./Buttons.jpg')} />
+           <Image source={require('./FormComponents.jpg')} />
           </View>
          </PopupDialog>
 

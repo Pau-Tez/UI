@@ -5,6 +5,11 @@ import { Stage } from './Stage';
 import { Image } from '../../components/Image';
 import { Video } from '../../components/Video'
 import { WebView } from 'react-native';
+import {
+  Text,Button,
+} from '../../index';
+import PopupDialog from 'react-native-popup-dialog';
+
 
 export function Videos() {
   return (
@@ -30,6 +35,17 @@ export function Videos() {
           height={180}
         />
       </Stage>
+
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT VIDEOS******</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./Videos.jpg')} />
+        </View>
+       </PopupDialog>
     </View>
   );
 }

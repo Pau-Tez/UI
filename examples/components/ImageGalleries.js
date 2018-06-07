@@ -6,7 +6,8 @@ import {
   View,
   ImageGallery,Button
 } from '../../index';
-
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 const window = Dimensions.get('window');
 
 export function ImageGalleries() {
@@ -25,9 +26,16 @@ export function ImageGalleries() {
           />
         </View>
       </Stage>
-      <Button styleName="secondary">
-        <Text>CLICK TO CODE VİEW ABOUT BUTTONS</Text>
-      </Button>
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT IMAGEGALLERY*****</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./Buttons1.jpg')} />
+        </View>
+       </PopupDialog>
     </View>
   );
 }

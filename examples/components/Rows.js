@@ -7,10 +7,11 @@ import {
   Text,
   Subtitle,
   Caption,
-  Image,
   Button,
   Icon,
 } from '../../index';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 
 export function Rows() {
   return (
@@ -30,14 +31,12 @@ export function Rows() {
           <Text>Add comment</Text>
         </Row>
       </Stage>
-
       <Stage title="Small list item + Icon">
         <Row styleName="small">
           <Icon name="add-to-favorites-off" />
           <Text>Add to favorites</Text>
         </Row>
       </Stage>
-
       <Stage title="Small list item + Icon + Right Arrow">
         <Row styleName="small">
           <Icon name="web" />
@@ -156,6 +155,17 @@ export function Rows() {
           </View>
         </Row>
       </Stage>
+
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT ROWS******</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./Rows.jpg')} />
+        </View>
+       </PopupDialog>
     </View>
   );
 }

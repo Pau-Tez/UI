@@ -4,9 +4,10 @@ import { Dimensions } from 'react-native';
 import { Stage } from './Stage';
 import {
   View,
-  InlineGallery,
+  InlineGallery,Text,Button,
 } from '../../index';
-
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 const window = Dimensions.get('window');
 
 export function InlineGalleries() {
@@ -55,6 +56,17 @@ export function InlineGalleries() {
           />
         </View>
       </Stage>
+
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT IMAGES******</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./Images.jpg')} />
+        </View>
+       </PopupDialog>
     </View>
   );
 }

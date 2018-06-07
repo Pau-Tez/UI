@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { View } from '../../components/View';
 import { Stage } from './Stage';
 import { DropDownMenu } from '../../components/DropDownMenu';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 
 import {
   Caption,
@@ -36,10 +38,8 @@ export class DropDownMenus extends Component {
       selectedOptionForFormGroupDropdown: emptyOption,
     };
   }
-
   render() {
     const { selectedOption, selectedOptionForFormGroupDropdown } = this.state;
-
     return (
       <View styleName="vertical collapsed">
         <Stage title="Dropdown">
@@ -51,6 +51,8 @@ export class DropDownMenus extends Component {
             valueProperty={"id"}
           />
         </Stage>
+
+
         <Stage title="Dropdown (horizontal)">
           <DropDownMenu
             styleName="horizontal"
@@ -88,12 +90,12 @@ export class DropDownMenus extends Component {
 
         <Stage title="Learn Much More">
             <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-              <Text>*****CODE VİEW ABOUT BUTTONS******</Text>
+              <Text>*****CODE VİEW ABOUT DROPDOWNMENU******</Text>
             </Button>
           </Stage>
         <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
          <View>
-           <Image source={require('./Buttons.jpg')} />
+           <Image source={require('./DropDownMenus.jpg')} />
           </View>
          </PopupDialog>
       </View>

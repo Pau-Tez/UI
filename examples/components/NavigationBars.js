@@ -2,6 +2,8 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 
 import { View } from '../../components/View';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 import { Stage } from './Stage';
 import {
   Heading,
@@ -301,11 +303,17 @@ export function NavigationBars() {
           />
         </NavBarStageContainer>
       </Stage>
-      <Button styleName="secondary">
-        <Text>CLICK TO CODE VİEW ABOUT BUTTONS</Text>
-      </Button>
 
-
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT NAVIGATONBARS******</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./NavigationBars.jpg')} />
+        </View>
+       </PopupDialog>
     </View>
   );
 }

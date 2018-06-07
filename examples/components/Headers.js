@@ -13,6 +13,8 @@ import {
   Overlay,
   Button,
 } from '../../index';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 
 export function Headers() {
   return (
@@ -54,12 +56,12 @@ export function Headers() {
 
       <Stage title="Learn Much More">
           <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-            <Text>*****CODE VİEW ABOUT BUTTONS******</Text>
+            <Text>*****CODE VİEW ABOUT HEADİNG******</Text>
           </Button>
         </Stage>
       <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
        <View>
-         <Image source={require('./Buttons.jpg')} />
+         <Image source={require('./Header.jpg')} />
         </View>
        </PopupDialog>
     </View>

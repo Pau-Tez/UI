@@ -16,9 +16,10 @@ import { Headers } from './Headers';
 import { NavigationBars } from './NavigationBars';
 import { Videos } from './Videos';
 import { RNTutorial } from './RNTutorial';
-
+import { HorizontalPagers } from './HorizontalPagers';
+import {InlineGalleries } from './InlineGalleries';
 const examples = [
-  { title: 'RNTutorial', component: RNTutorial },
+  { title: 'REACT NATIVE TUTORİAL', component: RNTutorial },
   { title: 'Typography', component: Typography },
   { title: 'Navigation Bars', component: NavigationBars },
   { title: 'Dropdown Menus', component: DropDownMenus },
@@ -32,8 +33,8 @@ const examples = [
   { title: 'Images', component: Images },
   { title: 'Video', component: Videos },
   { title: 'Form Components', component: FormComponents },
-
-
+  { title: 'HorizontalPagers', component: HorizontalPagers },
+  { title: 'InlineGalleries', component: InlineGalleries },
 ];
 
 export class Examples extends Component {

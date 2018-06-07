@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { View } from '../../components/View';
 import { Stage } from './Stage';
 import { Image } from '../../components/Image';
 import {  Button,Text} from '../../index';
-
+import PopupDialog from 'react-native-popup-dialog';
 export function Images() {
   return (
     <View styleName="vertical collapsed">
@@ -99,9 +98,16 @@ export function Images() {
         />
       </Stage>
 
-      <Button styleName="secondary">
-        <Text>CLICK TO CODE VİEW ABOUT BUTTONS</Text>
-      </Button>
+      <Stage title="Learn Much More">
+          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
+            <Text>*****CODE VİEW ABOUT IMAGES******</Text>
+          </Button>
+        </Stage>
+      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
+       <View>
+         <Image source={require('./Images.jpg')} />
+        </View>
+       </PopupDialog>
     </View>
   );
 }

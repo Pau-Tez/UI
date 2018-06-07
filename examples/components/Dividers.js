@@ -4,8 +4,10 @@ import { View } from '../../components/View';
 import { Stage } from './Stage';
 import {
   Caption,
-  Divider,Button
+  Divider,Button,Text,
 } from '../../index';
+import PopupDialog from 'react-native-popup-dialog';
+import { Image } from '../../components/Image';
 
 export function Dividers() {
   return (
@@ -37,12 +39,12 @@ export function Dividers() {
 
       <Stage title="Learn Much More">
           <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-            <Text>*****CODE VİEW ABOUT BUTTONS******</Text>
+            <Text>*****CODE VİEW ABOUT DİVİDERS******</Text>
           </Button>
         </Stage>
       <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
        <View>
-         <Image source={require('./Buttons.jpg')} />
+         <Image source={require('./Dividers.jpg')} />
         </View>
        </PopupDialog>
 
