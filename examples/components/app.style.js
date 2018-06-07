@@ -7,7 +7,7 @@ export default StyleSheet.create({
     alignItems: "center"
   },
   button: {
-    backgroundColor: "lightblue",
+    backgroundColor: "yellow",
     padding: 12,
     margin: 16,
     justifyContent: "center",
@@ -32,7 +32,7 @@ export default StyleSheet.create({
   },
   scrollableModalContent1: {
     height: 200,
-    backgroundColor: "orange",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center"
   },

@@ -1,6 +1,5 @@
-import React from 'react';
-import { Dimensions } from 'react-native';
 
+import { Dimensions } from 'react-native';
 import { Stage } from './Stage';
 import {
   View,
@@ -8,15 +7,32 @@ import {
   Tile,
   ImageBackground,
   Subtitle,
-  Caption,Button,Text,
+  Caption,Button,
 } from '../../index';
 import PopupDialog from 'react-native-popup-dialog';
 import { Image } from '../../components/Image';
 
 const window = Dimensions.get('window');
 
-export function HorizontalPagers() {
-  return (
+import React, { Component } from "react";
+import { Text, TouchableOpacity, ScrollView } from "react-native";
+import Modal from "react-native-modal";
+
+import styles from "./app.style";
+
+export class HorizontalPagers extends Component {
+         state = {
+            isModalVisible: false
+          };
+            _renderButton = (text, onPress) => (
+              <TouchableOpacity onPress={onPress}>
+                <View style={styles.button}>
+                  <Text>{text}</Text>
+                </View>
+            </TouchableOpacity>
+          );
+     render(){
+     return (
     <View styleName="vertical collapsible">
       <Stage title="Horizontal Pager (with tiles as content)">
         <View style={{ height: 250, width: window.width }}>
@@ -44,16 +60,38 @@ export function HorizontalPagers() {
           />
         </View>
       </Stage>
-      <Stage title="Learn Much More">
-          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-            <Text>*****CODE VİEW ABOUT HORİZONTALPAGERS******</Text>
-          </Button>
-        </Stage>
-      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-       <View>
-         <Image source={require('./Buttons1.jpg')} />
-        </View>
-       </PopupDialog>
+
+      <Stage>
+           {this._renderButton("CODE VİEW ABOUT HORİZONTALPAGERS ", () =>
+             this.setState({ visibleModal: 1 })
+
+           )}
+           <Modal
+             isVisible={this.state.visibleModal === 1}
+             onSwipe={() => this.setState({ visibleModal: null })}
+             swipeDirection="down"
+             scrollTo={this._handleScrollTo}
+             scrollOffset={this.state.scrollOffset}
+             scrollOffsetMax={400 - 300} // content height - ScrollView height
+             style={styles.bottomModal}
+           >
+             <View style={styles.scrollableModal}>
+               <ScrollView
+                 ref={ref => (this.scrollViewRef = ref)}
+                 onScroll={this._handleOnScroll}
+                 scrollEventThrottle={16}
+               >
+                 <View style={styles.scrollableModalContent1}>
+                 <View>
+                   <Image source={require('./HorizontalPagers.jpg')} />
+                  </View>
+                 </View>
+               </ScrollView>
+             </View>
+           </Modal>
+       </Stage>
+
     </View>
   );
+}
 }

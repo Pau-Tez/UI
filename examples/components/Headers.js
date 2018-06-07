@@ -1,11 +1,8 @@
-import React from 'react';
 
-import { Stage } from './Stage';
+
 import {
   Heading,
-  View,
   Tile,
-  Text,
   Title,
   Subtitle,
   Caption,
@@ -13,11 +10,29 @@ import {
   Overlay,
   Button,
 } from '../../index';
-import PopupDialog from 'react-native-popup-dialog';
+
+import { Stage } from './Stage';
 import { Image } from '../../components/Image';
 
-export function Headers() {
-  return (
+import React, { Component } from "react";
+import { Text, TouchableOpacity, View, ScrollView } from "react-native";
+import Modal from "react-native-modal";
+
+import styles from "./app.style";
+
+export class Headers extends Component {
+         state = {
+            isModalVisible: false
+          };
+            _renderButton = (text, onPress) => (
+              <TouchableOpacity onPress={onPress}>
+                <View style={styles.button}>
+                  <Text>{text}</Text>
+                </View>
+            </TouchableOpacity>
+          );
+     render(){
+     return (
     <View styleName="vertical collapsed">
       <Stage title="Header / Article">
         <Tile styleName="text-centric">
@@ -54,16 +69,36 @@ export function Headers() {
         </Tile>
       </Stage>
 
-      <Stage title="Learn Much More">
-          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-            <Text>*****CODE VİEW ABOUT HEADİNG******</Text>
-          </Button>
-        </Stage>
-      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-       <View>
-         <Image source={require('./Header.jpg')} />
-        </View>
-       </PopupDialog>
+      <Stage>
+           {this._renderButton("CODE VİEW ABOUT HEADERS? ", () =>
+             this.setState({ visibleModal: 1 })
+           )}
+
+           <Modal
+             isVisible={this.state.visibleModal === 1}
+             onSwipe={() => this.setState({ visibleModal: null })}
+             swipeDirection="down"
+             scrollTo={this._handleScrollTo}
+             scrollOffset={this.state.scrollOffset}
+             scrollOffsetMax={400 - 300} // content height - ScrollView height
+             style={styles.bottomModal}
+           >
+             <View style={styles.scrollableModal}>
+               <ScrollView
+                 ref={ref => (this.scrollViewRef = ref)}
+                 onScroll={this._handleOnScroll}
+                 scrollEventThrottle={16}
+               >
+                 <View style={styles.scrollableModalContent1}>
+                 <View>
+                   <Image source={require('./Header.jpg')} />
+                  </View>
+                 </View>
+               </ScrollView>
+             </View>
+           </Modal>
+       </Stage>
     </View>
   );
+}
 }

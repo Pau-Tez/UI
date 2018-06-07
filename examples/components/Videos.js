@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { View } from '../../components/View';
 import { Stage } from './Stage';
+
 import { Image } from '../../components/Image';
-import { Video } from '../../components/Video'
-import { WebView } from 'react-native';
+
+import { Text,TouchableOpacity,ScrollView,WebView} from "react-native";
+
 import {
-  Text,Button,
+  Caption,
+  FormGroup,Button,Icon,
 } from '../../index';
+import styles from "./app.style";
+import Modal from "react-native-modal";
+import { Video } from '../../components/Video'
 import PopupDialog from 'react-native-popup-dialog';
 
 
-export function Videos() {
+export class Videos extends Component {
+
+
+      state = {
+          isModalVisible: false
+        };
+
+          _renderButton = (text, onPress) => (
+            <TouchableOpacity onPress={onPress}>
+              <View style={styles.button}>
+                <Text>{text}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+render(){
   return (
     <View styleName="vertical collapsed">
       <Stage title={"YouTube video"}>
@@ -36,16 +56,39 @@ export function Videos() {
         />
       </Stage>
 
+
       <Stage title="Learn Much More">
-          <Button  onPress={()=>{this.popupDialog.show();}} styleName="secondary">
-            <Text>*****CODE VİEW ABOUT VIDEOS******</Text>
-          </Button>
-        </Stage>
-      <PopupDialog ref={(popupDialog) => { this.popupDialog = popupDialog; }}>
-       <View>
-         <Image source={require('./Videos.jpg')} />
+      {this._renderButton("VIEW CODE ABOUT VIDEOS? ", () =>
+        this.setState({ visibleModal: 1 })
+      )}
+      </Stage>
+
+      <Modal
+        isVisible={this.state.visibleModal === 1}
+        onSwipe={() => this.setState({ visibleModal: null })}
+        swipeDirection="down"
+        scrollTo={this._handleScrollTo}
+        scrollOffset={this.state.scrollOffset}
+        scrollOffsetMax={400 - 300} // content height - ScrollView height
+        style={styles.bottomModal}
+      >
+        <View style={styles.scrollableModal}>
+          <ScrollView
+            ref={ref => (this.scrollViewRef = ref)}
+            onScroll={this._handleOnScroll}
+            scrollEventThrottle={16}
+          >
+            <View style={styles.scrollableModalContent1}>
+            <View>
+              <Image source={require('./Videos.jpg')} />
+             </View>
+            </View>
+          </ScrollView>
         </View>
-       </PopupDialog>
+      </Modal>
+
+
     </View>
   );
+}
 }
